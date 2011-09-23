@@ -48,7 +48,7 @@ Run buildout and run Plone in the foreground, and you will see output like this:
 Outside Plone
 -------------
 
-To use it outside of Plone, configure a ``zc.recipe.egg`` section in your buildout like so::
+To use it outside of Plone, after configuring ``collective.stats`` to be used inside Plone (as described above) configure a ``zc.recipe.egg`` section in your buildout like so::
 
     [zopepy]
     recipe = zc.recipe.egg
