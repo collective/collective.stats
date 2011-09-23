@@ -158,5 +158,5 @@ Enjoy!
 .. _`Enfold Systems'`: http://enfoldsystems.com
 
 
-.. [1] ``collective.stats`` has been donated by Enfold Systems to the Plone collective under the ZPL 2.1 license.
+.. [1] ``collective.stats`` has been donated to the Plone collective by Enfold Systems under a BSD-like license (ZPL 2.1).
 
