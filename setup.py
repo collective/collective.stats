@@ -10,6 +10,7 @@ version = '0.7'
 setup(name='collective.stats',
       version=version,
       description="Zope low level stats per request.",
+      long_description=open('README.rst').read() + open(os.path.join('docs', 'HISTORY.txt')).read(),
       classifiers=[
           "Programming Language :: Python",
           "Topic :: Software Development :: Libraries :: Python Modules",

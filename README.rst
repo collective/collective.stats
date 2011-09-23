@@ -12,13 +12,12 @@ Inside Plone
 
 To install in Plone, add ``collective.stats`` to your ``plone.recipe.zope2instance`` section's eggs parameter e.g.::
 
-    [buildout]
-    allow-hosts =
-    extends = http://x.aclark.net/plone/4.2.x/develop.cfg
-    develop = .
-
-    [plone]
-    eggs += collective.stats
+    [instance]
+    recipe = plone.recipe.zope2instance
+    eggs =
+        Plone
+        …
+        collective.stats
 
 Run buildout and run Plone in the foreground, and you will see output like this::
 
@@ -53,7 +52,7 @@ To use it outside of Plone, configure a ``zc.recipe.egg`` section in your buildo
 
     [zopepy]
     recipe = zc.recipe.egg
-    eggs = ${plone:eggs}
+    eggs = ${instance:eggs}
     interpreter = zopepy
 
 Run buildout, and this will create a script called ``collective-stats`` you can use to parse Plone logs and produce a ``.csv`` file::
