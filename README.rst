@@ -2,7 +2,7 @@
 Introduction
 ============
 
-This is Enfold Systems' low level ZODB stats tool.
+This is `Enfold Systems'`_ low level ZODB stats tool.
 
 Installation
 ============
@@ -154,3 +154,5 @@ Take a peak at the top of that file to see the column headers::
     GET:/misc_/OFSP/UserFolder_icon.gif,0.0017,0.0012,0.0015,0.0000,0000,0000,0000,117036,117036
 
 Enjoy!
+
+.. _`Enfold Systems'`: http://enfoldsystems.com
