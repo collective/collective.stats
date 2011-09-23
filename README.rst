@@ -7,8 +7,8 @@ This is Enfold Systems' low level ZODB stats tool.
 Installation
 ============
 
-Plone
------
+Inside Plone
+-------------
 
 To install in Plone, add ``collective.stats`` to your ``plone.recipe.zope2instance`` section's eggs parameter e.g.::
 
@@ -45,6 +45,9 @@ Run buildout and run Plone in the foreground, and you will see output like this:
     2011-09-22 22:25:58 INFO collective.stats | 0.0020 0.0014 0.0017 0.0000 0000 0000 0000 | GET:/++resource++plone-admin-ui.css | t: 0.0000, t_c: 0.0000, t_nc: 0.0000 | RSS: 126352 - 126356
     2011-09-22 22:25:58 INFO collective.stats | 0.0014 0.0009 0.0012 0.0000 0000 0000 0000 | GET:/++resource++plone-logo.png | t: 0.0000, t_c: 0.0000, t_nc: 0.0000 | RSS: 126356 - 126360
 
+
+Outside Plone
+-------------
 
 To use it outside of Plone, configure a ``zc.recipe.egg`` section in your buildout like so::
 
@@ -133,7 +136,21 @@ Check the current directory and you should see a ``stats.csv`` file::
     parts/
     setup.py
     src/
-    **stats.csv**
+    stats.csv
     var/
 
+Take a peak at the top of that file to see the column headers::
 
+    $ head stats.csv 
+    url,time,t traverse,t commit,setstate,total,total cached,modified,rss before,rss after
+    GET:/favicon.ico,0.0021,0.0014,0.0018,0.0000,0000,0000,0000,116708,116744
+    GET:/manage_main,0.1783,0.0021,0.1779,0.0000,0000,0000,0000,116756,116948
+    GET:/manage_page_style.css,0.0110,0.0014,0.0108,0.0000,0000,0000,0000,116948,117012
+    GET:/p_/ltab,0.0023,0.0008,0.0021,0.0000,0000,0000,0000,117020,117032
+    GET:/p_/sp,0.0100,0.0054,0.0099,0.0039,0018,0004,0000,116992,117032
+    GET:/p_/rtab,0.0020,0.0012,0.0018,0.0000,0000,0000,0000,117032,117032
+    GET:/misc_/OFSP/Folder_icon.gif,0.0018,0.0012,0.0016,0.0000,0000,0000,0000,117032,117032
+    GET:/p_/ControlPanel_icon,0.0017,0.0009,0.0015,0.0000,0000,0000,0000,117036,117036
+    GET:/misc_/OFSP/UserFolder_icon.gif,0.0017,0.0012,0.0015,0.0000,0000,0000,0000,117036,117036
+
+Enjoy!
