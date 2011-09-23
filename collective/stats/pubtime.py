@@ -7,10 +7,10 @@ import logging
 import threading
 from datetime import datetime, timedelta
 from zope import component
-from enfold.stats import STATS
+from collective.stats import STATS
 import ZPublisher.interfaces
 
-logger = logging.getLogger('enfold.stats')
+logger = logging.getLogger('collective.stats')
 
 process = psutil.Process(os.getpid())
 

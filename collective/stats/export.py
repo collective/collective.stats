@@ -17,11 +17,11 @@ def main():
          'total', 'total cached', 'modified', 'rss before', 'rss after'))
 
     for line in open(logfile, 'rb'):
-        if 'enfold.stats' not in line:
+        if 'collective.stats' not in line:
             continue
 
         try:
-            info = line.split('enfold.stats')[-1]
+            info = line.split('collective.stats')[-1]
             i1, i2, i3, i4 = [i.strip() for i in info.split('|')[1:]]
         except:
             continue

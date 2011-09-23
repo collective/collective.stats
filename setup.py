@@ -38,6 +38,6 @@ setup(name='collective.stats',
       target = plone
       
       [console_scripts]
-      stats-parse = collective.stats.export:main
+      collective-stats = collective.stats.export:main
       """,
       )

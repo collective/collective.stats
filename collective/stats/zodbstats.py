@@ -10,7 +10,7 @@ from ZODB.broken import Broken
 from ZODB.serialize import ObjectReader
 from ZODB.Connection import Connection
 
-from enfold.stats import STATS
+from collective.stats import STATS
 
 ############
 # ZODB Stats
