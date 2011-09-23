@@ -2,7 +2,7 @@
 Introduction
 ============
 
-This is `Enfold Systems'`_ low level ZODB stats tool.
+This is `Enfold Systems'`_ low level ZODB stats tool [1]_.
 
 Installation
 ============
@@ -156,3 +156,7 @@ Take a peak at the top of that file to see the column headers::
 Enjoy!
 
 .. _`Enfold Systems'`: http://enfoldsystems.com
+
+
+[1] ``collective.stats`` has been donated by Enfold Systems to the Plone collective under the ZPL 2.1 license.
+
