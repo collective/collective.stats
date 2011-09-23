@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.8'
+version = '0.9'
 
 
 setup(name='collective.stats',
@@ -19,7 +19,7 @@ setup(name='collective.stats',
       author_email='contact@enfoldsystems.com',
       maintainer='Alex Clark',
       maintainer_email='aclark@aclark.net',
-      url='http://www.enfoldsystems.com',
+      url='http://github.com/collective/collective.stats',
       license='ZPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],
