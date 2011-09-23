@@ -124,13 +124,7 @@ Run buildout, and this will create a script called ``collective-stats`` you can 
 Check the current directory and you should see a ``stats.csv`` file::
 
     $ ls -1
-    README.rst
-    bin/
-    bootstrap.py
-    buildout.cfg
-    collective/
     …
-    include/
     lib/
     parts/
     setup.py
@@ -158,4 +152,3 @@ Enjoy!
 
 
 .. [1] ``collective.stats`` has been donated to the Plone collective by Enfold Systems under a BSD-like license (ZPL 2.1).
-
