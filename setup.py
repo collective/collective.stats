@@ -7,7 +7,7 @@ def read(*rnames):
 version = '0.7'
 
 
-setup(name='enfold.stats',
+setup(name='collective.stats',
       version=version,
       description="Zope low level stats per request.",
       classifiers=[
@@ -21,7 +21,7 @@ setup(name='enfold.stats',
       url='http://www.enfoldsystems.com',
       license='ZPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['enfold'],
+      namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -38,6 +38,6 @@ setup(name='enfold.stats',
       target = plone
       
       [console_scripts]
-      es-parse = enfold.stats.export:main
+      stats-parse = collective.stats.export:main
       """,
       )
