@@ -132,7 +132,7 @@ Check the current directory and you should see a ``stats.csv`` file::
     stats.csv
     var/
 
-Take a peak at the top of that file to see the column headers::
+Take a peek at the top of that file to see the column headers::
 
     $ head stats.csv 
     url,time,t traverse,t commit,setstate,total,total cached,modified,rss before,rss after
