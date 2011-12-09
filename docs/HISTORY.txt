@@ -2,8 +2,14 @@
 Changelog
 =========
 
-0.9.1 (Unreleased)
+0.9.1 (2011-12-01)
 ------------------
+
+- Add output header detail to README
+  [aclark]
+
+- Fix typo
+  [jean]
 
 0.9.0 (2011-09-22)
 ------------------
