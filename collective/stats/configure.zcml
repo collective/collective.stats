@@ -1,7 +1,7 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
    xmlns:five="http://namespaces.zope.org/five"
-   i18n_domain="enfold.stats">
+   i18n_domain="collective.stats">
 
   <five:registerPackage package="." initialize=".initialize" />
   
@@ -9,5 +9,7 @@
   <subscriber handler=".pubtime.pubAfterTraverseHandler" />
   <subscriber handler=".pubtime.pubBeforeCommitHandler" />
   <subscriber handler=".pubtime.pubSucessHandler" />
+  <subscriber for="ZPublisher.interfaces.IPubFailure"
+              handler=".pubtime.pubSucessHandler" />
 
 </configure>
