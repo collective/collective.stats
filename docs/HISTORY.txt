@@ -2,6 +2,12 @@
 Changelog
 =========
 
+0.9.2 (Unreleased)
+------------------
+
+- Add stats info to failure requests.
+  [fafhrd91]
+
 0.9.1 (2011-12-01)
 ------------------
 
