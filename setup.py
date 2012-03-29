@@ -1,6 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
@@ -12,9 +13,17 @@ setup(name='collective.stats',
       description="Zope low level stats per request.",
       long_description=open('README.rst').read() + open(os.path.join('docs', 'HISTORY.txt')).read(),
       classifiers=[
-          "Programming Language :: Python",
-          "Topic :: Software Development :: Libraries :: Python Modules",
-      ],
+        "Environment :: Console",
+        "Framework :: Plone",
+        "Framework :: Zope2",
+        "Intended Audience :: Developers",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: Zope Public License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: System :: Logging",
+        ],
       author='Enfold Systems',
       author_email='contact@enfoldsystems.com',
       maintainer='Alex Clark',
@@ -31,7 +40,7 @@ setup(name='collective.stats',
           'Zope2',
           'psutil',
       ],
-      extras_require = dict(
+      extras_require=dict(
         oldzope=['ZPublisherEventsBackport']),
       entry_points="""
       # -*- Entry points: -*-
