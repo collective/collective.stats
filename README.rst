@@ -57,7 +57,7 @@ To use it outside of Plone, after configuring ``collective.stats`` to be used in
 
 Run buildout, and this will create a script called ``collective-stats`` you can use to parse Plone logs and produce a ``.csv`` file::
 
-    $ bin/collective-stats var/log/plone.log
+    $ bin/collective-stats var/log/instance.log
     …
     1.3170 0.0196 1.3139 0.0000 0000 0000 0003 | GET:/Plone
     0.0283 0.0274 0.0278 0.0000 0000 0000 0000 | GET:/Plone/portal_css/Sunburst Theme/member.css
