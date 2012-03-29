@@ -1,7 +1,12 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
    xmlns:five="http://namespaces.zope.org/five"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
    i18n_domain="collective.stats">
+
+  <zcml:configure zcml:condition="installed plone.transformchain">
+     <include package="plone.transformchain" />
+  </zcml:configure>
 
   <five:registerPackage package="." initialize=".initialize" />
   

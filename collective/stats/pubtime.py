@@ -1,4 +1,4 @@
-""" 
+"""
 
 $Id:  2007-12-12 12:27:02Z fafhrd $
 """
@@ -24,6 +24,7 @@ def pubStartHandler(ev):
         'time-after-traverse': zero,
         'time-before-commit': zero,
         'time-end': zero,
+        'transchain': zero,
         'memory': process.get_memory_info(),
         'modified': 0,
         'zodb-loads': [],
@@ -75,7 +76,7 @@ def pubSucessHandler(ev):
     loads = timedelta()
     for td in stats['zodb-loads']:
         loads = loads + td
-    
+
     def printTD(td):
         s = td.seconds + td.microseconds/1000000.0
         return '%2.4f'%s
@@ -87,21 +88,22 @@ def pubSucessHandler(ev):
         printTD(stats['time-end']),
         printTD(stats['time-after-traverse']),
         printTD(stats['time-before-commit']),
+        printTD(stats['transchain']),
         printTD(loads),
         total,
         total_cached,
         stats['modified'],
-        environ['REQUEST_METHOD'], 
+        environ['REQUEST_METHOD'],
         environ['PATH_INFO'],
-        printTD(t_total), printTD(t_cached), printTD(t_uncached), 
+        printTD(t_total), printTD(t_cached), printTD(t_uncached),
         rss1, rss2)
 
     logger.info(
-        '| %s %s %s %s %0.4d %0.4d %0.4d '
+        '| %s %s %s %s %s %0.4d %0.4d %0.4d '
         '| %s:%s | t: %s, t_c: %s, t_nc: %s '
         '| RSS: %s - %s'%info)
 
     ev.request.response.setHeader(
-        'x-stats', '%s %s %s %s %0.4d %0.4d %0.4d'%info[:7])
+        'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d'%info[:8])
 
     del STATS.stats

@@ -1,4 +1,4 @@
-""" 
+"""
 
 $Id:  2007-12-12 12:27:02Z fafhrd $
 """
@@ -29,11 +29,11 @@ def load_persistent(self, oid, klass):
     # Quick instance reference.  We know all we need to know
     # to create the instance w/o hitting the db, so go for it!
     try:
-      stats_cached = STATS.stats['zodb-cached']
-      stats_uncached = STATS.stats['zodb-uncached']
+        stats_cached = STATS.stats['zodb-cached']
+        stats_uncached = STATS.stats['zodb-uncached']
     except:
-      stats_cached = []
-      stats_uncached = []
+        stats_cached = []
+        stats_uncached = []
 
     t1 = datetime.now()
 

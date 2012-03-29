@@ -1,4 +1,4 @@
-""" 
+"""
 
 $Id:  2007-12-12 12:27:02Z fafhrd $
 """
@@ -10,10 +10,10 @@ def main():
         outfile = open(sys.argv[2], 'wb')
     except:
         outfile = open('stats.csv', 'wb')
-    
+
     writer = csv.writer(outfile)
     writer.writerow(
-        ('url', 'time', 't traverse', 't commit', 'setstate', 
+        ('url', 'time', 't traverse', 't commit', 't transchain', 'setstate',
          'total', 'total cached', 'modified', 'rss before', 'rss after'))
 
     for line in open(logfile, 'rb'):
@@ -26,19 +26,19 @@ def main():
         except:
             continue
 
-        tital, after_traverse, before_commit, loads, \
+        tital, after_traverse, before_commit, transchain, loads, \
             loads_total, loads_cached, modified = i1.split()
         rss1, rss2 = [i.strip() for i in i4.split('RSS:')[-1].split('-')]
         url = i2.strip()
-        
+
         print '%s | %s'%(i1, i2)
         writer.writerow(
-            (url, tital, after_traverse, before_commit, loads,
+            (url, tital, after_traverse, before_commit, transchain, loads,
                  loads_total, loads_cached, modified, rss1, rss2))
 
 
     outfile.close()
-        
+
 
 
 if __name__ == '__main__':

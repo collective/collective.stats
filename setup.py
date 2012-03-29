@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.9.2'
+version = '1.0.0'
 
 
 setup(name='collective.stats',
@@ -37,7 +37,7 @@ setup(name='collective.stats',
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
       target = plone
-      
+
       [console_scripts]
       collective-stats = collective.stats.export:main
       """,
