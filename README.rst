@@ -1,4 +1,3 @@
-
 Introduction
 ============
 
@@ -54,6 +53,7 @@ To use it outside of Plone, after configuring ``collective.stats`` to be used in
     recipe = zc.recipe.egg
     eggs = ${instance:eggs}
     interpreter = zopepy
+    scripts = collective-stats
 
 Run buildout, and this will create a script called ``collective-stats`` you can use to parse Plone logs and produce a ``.csv`` file::
 
