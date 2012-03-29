@@ -176,6 +176,43 @@ Column header details:
 |rss after     |RAM usage after request                                        |
 +--------------+---------------------------------------------------------------+
 
+An Example
+==========
+
+If you enable collective.stats to emit stats in response headers you will see a response line such as::
+
+    X-Stats:4.5556 0.0232 1.2539 0.6334 9266 1244 0000
+
+Deciphering::
+
+    4.555 - (time) is total time in Zope Publisher
+
+    0.023 - (t traverse) is after traverse time (callable object inside Publisher)
+            time from BEGINNING of request to after TRAVERSE time.
+
+    1.253 - (t commit) is before commit() (we have a complete RESPONSE object)
+            time from BEGINGING of request to before COMMIT
+
+    0.6334 - (setstate) total time in __setstate__ (time of ZODB spent unghostifying # of LOAD objects)
+
+    9266 - (total) total number of LOADS
+
+    1244 - (total cached) total number of HOT LOADS (cache hits in ZODB)
+
+    0000 - (modified) total number of MODIFIED objects.
+
+Summary
+-------
+
+t_time - t_commit = total time to commit() (time executed in IPubBeforeCommit)
+If you are using plone.app.caching or plone.app.theming both of which use
+commit events; so depending how collective.stats gets registered - its possible
+those are not being captured.
+
+In this example 3.3 seconds is "lost" in commit.  In this particular case
+it was due to unoptimized plone.app.theming / diazo rules file.
+
+
 Enjoy!
 
 .. _`Enfold Systems'`: http://enfoldsystems.com
