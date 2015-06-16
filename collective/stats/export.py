@@ -1,8 +1,6 @@
-"""
+import csv
+import sys
 
-$Id:  2007-12-12 12:27:02Z fafhrd $
-"""
-import csv, sys
 
 def main():
     logfile = sys.argv[1]
@@ -12,9 +10,10 @@ def main():
         outfile = open('stats.csv', 'wb')
 
     writer = csv.writer(outfile)
-    writer.writerow(
-        ('url', 'time', 't traverse', 't commit', 't transchain', 'setstate',
-         'total', 'total cached', 'modified', 'rss before', 'rss after'))
+    writer.writerow((
+        'url', 'time', 't traverse', 't commit', 't transchain', 'setstate',
+        'total', 'total cached', 'modified', 'rss before', 'rss after'
+    ))
 
     for line in open(logfile, 'rb'):
         if 'collective.stats' not in line:
@@ -31,14 +30,12 @@ def main():
         rss1, rss2 = [i.strip() for i in i4.split('RSS:')[-1].split('-')]
         url = i2.strip()
 
-        print '%s | %s'%(i1, i2)
+        print '%s | %s' % (i1, i2)
         writer.writerow(
             (url, tital, after_traverse, before_commit, transchain, loads,
-                 loads_total, loads_cached, modified, rss1, rss2))
-
+             loads_total, loads_cached, modified, rss1, rss2))
 
     outfile.close()
-
 
 
 if __name__ == '__main__':

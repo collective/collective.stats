@@ -1,21 +1,15 @@
-"""
-
-$Id:  2007-12-12 12:27:02Z fafhrd $
-"""
-from datetime import datetime, timedelta
-
-from persistent import PickleCache
-from ZODB import broken, utils
+from ZODB import broken
+from ZODB.Connection import Connection
 from ZODB.broken import Broken
 from ZODB.serialize import ObjectReader
-from ZODB.Connection import Connection
-
 from collective.stats import STATS
+from datetime import datetime
+from persistent import PickleCache
 
 ############
 # ZODB Stats
 
-has_new_ghost =  hasattr(PickleCache, 'new_ghost')
+has_new_ghost = hasattr(PickleCache, 'new_ghost')
 
 
 def patchObjectReader():
@@ -73,6 +67,7 @@ def load_persistent(self, oid, klass):
 
 
 origSetstate = Connection.setstate
+
 
 def setstate(self, obj):
     t1 = datetime.now()

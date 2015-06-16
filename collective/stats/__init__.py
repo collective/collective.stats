@@ -1,7 +1,7 @@
 import threading
 
 try:
-    import ZPublisherEventsBackport
+    import ZPublisherEventsBackport  # noqa
 except ImportError:
     pass
 
@@ -11,7 +11,7 @@ def initialize(context):
     patchObjectReader()
 
     try:
-        import collective.stats.transchain
+        import collective.stats.transchain  # noqa
     except ImportError:
         pass
 

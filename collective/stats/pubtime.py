@@ -1,19 +1,15 @@
-"""
-
-$Id:  2007-12-12 12:27:02Z fafhrd $
-"""
-import os, psutil
-import logging
-import threading
-from datetime import datetime, timedelta
-from zope import component
 from collective.stats import STATS
+from datetime import datetime
+from datetime import timedelta
+from zope import component
 import ZPublisher.interfaces
+import logging
+import os
+import psutil
+
 
 logger = logging.getLogger('collective.stats')
-
 process = psutil.Process(os.getpid())
-
 zero = timedelta(0)
 
 
@@ -30,17 +26,17 @@ def pubStartHandler(ev):
         'zodb-loads': [],
         'zodb-cached': [],
         'zodb-uncached': [],
-        }
+    }
 
 
 @component.adapter(ZPublisher.interfaces.IPubAfterTraversal)
 def pubAfterTraverseHandler(ev):
-    STATS.stats['time-after-traverse'] = datetime.now()-STATS.stats['time-start']
+    STATS.stats['time-after-traverse'] = datetime.now() - STATS.stats['time-start']  # noqa
 
 
 @component.adapter(ZPublisher.interfaces.IPubBeforeCommit)
 def pubBeforeCommitHandler(ev):
-    STATS.stats['time-before-commit'] = datetime.now()-STATS.stats['time-start']
+    STATS.stats['time-before-commit'] = datetime.now() - STATS.stats['time-start']  # noqa
 
     try:
         ob = ev.request['PARENTS'][-1]
@@ -78,11 +74,11 @@ def pubSucessHandler(ev):
         loads = loads + td
 
     def printTD(td):
-        s = td.seconds + td.microseconds/1000000.0
-        return '%2.4f'%s
+        s = td.seconds + td.microseconds / 1000000.0
+        return '%2.4f' % s
 
-    rss1 = stats['memory'][0]/1024
-    rss2 = process.get_memory_info()[0]/1024
+    rss1 = stats['memory'][0] / 1024
+    rss2 = process.get_memory_info()[0] / 1024
 
     info = (
         printTD(stats['time-end']),
@@ -95,15 +91,21 @@ def pubSucessHandler(ev):
         stats['modified'],
         environ['REQUEST_METHOD'],
         environ['PATH_INFO'],
-        printTD(t_total), printTD(t_cached), printTD(t_uncached),
-        rss1, rss2)
+        printTD(t_total),
+        printTD(t_cached),
+        printTD(t_uncached),
+        rss1,
+        rss2
+    )
 
     logger.info(
         '| %s %s %s %s %s %0.4d %0.4d %0.4d '
         '| %s:%s | t: %s, t_c: %s, t_nc: %s '
-        '| RSS: %s - %s'%info)
+        '| RSS: %s - %s' % info
+    )
 
     ev.request.response.setHeader(
-        'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d'%info[:8])
+        'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d' % info[:8]
+    )
 
     del STATS.stats
