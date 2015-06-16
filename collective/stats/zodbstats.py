@@ -3,6 +3,7 @@ from ZODB.Connection import Connection
 from ZODB.broken import Broken
 from ZODB.serialize import ObjectReader
 from collective.stats import STATS
+from collective.stats import init_stats
 from datetime import datetime
 from persistent import PickleCache
 
@@ -23,6 +24,8 @@ def load_persistent(self, oid, klass):
     # Quick instance reference.  We know all we need to know
     # to create the instance w/o hitting the db, so go for it!
     try:
+        if getattr(STATS, 'stats', None) is None:
+            init_stats()
         stats_cached = STATS.stats['zodb-cached']
         stats_uncached = STATS.stats['zodb-uncached']
     except:

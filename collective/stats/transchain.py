@@ -1,7 +1,8 @@
 """ plone.transformchain time """
+from collective.stats import STATS
+from collective.stats import init_stats
 from datetime import datetime
 from plone.transformchain import zpublisher
-from collective.stats import STATS
 
 orig_applyTransform = zpublisher.applyTransform
 
@@ -11,6 +12,8 @@ def applyTransform(request, body=None):
     res = orig_applyTransform(request, body)
 
     try:
+        if getattr(STATS, 'stats', None) is None:
+            init_stats()
         STATS.stats['transchain'] = datetime.now() - t1
     except:
         pass

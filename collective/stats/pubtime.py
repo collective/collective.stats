@@ -1,41 +1,31 @@
 from collective.stats import STATS
+from collective.stats import init_stats
+from collective.stats import process
 from datetime import datetime
 from datetime import timedelta
 from zope import component
 import ZPublisher.interfaces
 import logging
-import os
-import psutil
-
 
 logger = logging.getLogger('collective.stats')
-process = psutil.Process(os.getpid())
-zero = timedelta(0)
 
 
 @component.adapter(ZPublisher.interfaces.IPubStart)
 def pubStartHandler(ev):
-    STATS.stats = {
-        'time-start': datetime.now(),
-        'time-after-traverse': zero,
-        'time-before-commit': zero,
-        'time-end': zero,
-        'transchain': zero,
-        'memory': process.get_memory_info(),
-        'modified': 0,
-        'zodb-loads': [],
-        'zodb-cached': [],
-        'zodb-uncached': [],
-    }
+    init_stats()
 
 
 @component.adapter(ZPublisher.interfaces.IPubAfterTraversal)
 def pubAfterTraverseHandler(ev):
+    if getattr(STATS, 'stats', None) is None:
+        init_stats()
     STATS.stats['time-after-traverse'] = datetime.now() - STATS.stats['time-start']  # noqa
 
 
 @component.adapter(ZPublisher.interfaces.IPubBeforeCommit)
 def pubBeforeCommitHandler(ev):
+    if getattr(STATS, 'stats', None) is None:
+        init_stats()
     STATS.stats['time-before-commit'] = datetime.now() - STATS.stats['time-start']  # noqa
 
     try:
@@ -49,6 +39,8 @@ def pubBeforeCommitHandler(ev):
 @component.adapter(ZPublisher.interfaces.IPubSuccess)
 def pubSucessHandler(ev):
     environ = ev.request.environ
+    if getattr(STATS, 'stats', None) is None:
+        init_stats()
     stats = STATS.stats
     stats['time-end'] = datetime.now() - stats['time-start']
 
@@ -78,7 +70,7 @@ def pubSucessHandler(ev):
         return '%2.4f' % s
 
     rss1 = stats['memory'][0] / 1024
-    rss2 = process.get_memory_info()[0] / 1024
+    rss2 = process.memory_info()[0] / 1024
 
     info = (
         printTD(stats['time-end']),
