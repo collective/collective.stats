@@ -2,8 +2,8 @@
 Changelog
 =========
 
-1.1 (unreleased)
-----------------
+1.0.1 (2015-06-23)
+------------------
 
 - Fixes ``AttributeError`` with ``thread._local``, adapt to new ``psutil`` API.
   Ref: http://stackoverflow.com/questions/20640679
