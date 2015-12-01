@@ -41,7 +41,13 @@ Run buildout and run Plone in the foreground, and you will see output like this:
     2011-09-22 22:25:58 INFO collective.stats | 0.0020 0.0014 0.0017 0.0004 0.0000 0000 0000 0000 | GET:/++resource++plone-admin-ui.css | t: 0.0000, t_c: 0.0000, t_nc: 0.0000 | RSS: 126352 - 126356
     2011-09-22 22:25:58 INFO collective.stats | 0.0014 0.0009 0.0012 0.0004 0.0000 0000 0000 0000 | GET:/++resource++plone-logo.png | t: 0.0000, t_c: 0.0000, t_nc: 0.0000 | RSS: 126356 - 126360
 
+If you want to use this product in a production environment, and you don't want your logs to fill up, you can remove logging by providing an environment variable ``COLLECTIVE_STATS_DISABLE_LOG``. The only value that will cause ``collective.stats`` not to log, is the number 1::
 
+    environment-vars =
+        COLLECTIVE_STATS_DISABLE_LOG 1
+
+You still get the ``X-Stats`` response header.
+        
 Outside Plone
 -------------
 
