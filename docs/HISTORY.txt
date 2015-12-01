@@ -5,7 +5,8 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Provide a way to still have the functionality, without logging
+  [frapell] 
 
 
 1.0.1 (2015-06-23)
