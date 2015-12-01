@@ -2,7 +2,7 @@
 Changelog
 =========
 
-1.0.2 (unreleased)
+1.0.2 (2015-12-01)
 ------------------
 
 - Provide a way to still have the functionality, without logging
