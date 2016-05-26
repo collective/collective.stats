@@ -106,16 +106,16 @@ Log to a Statsd server
 If you want to log the data to a statsd_ server (for example to get graphs with
 graphite_ or grafana_), provide the following environtment vars:
 
-- COLECTIVE_STATS_STATSD_SERVER: servername or address
-- COLECTIVE_STATS_STATSD_SERVER_PORT: port number (default value: 8125)
-- COLECTIVE_STATS_STATSD_PREFIX: prefix under the values will be stored (default value: collective.stats)
+- COLLECTIVE_STATS_STATSD_SERVER: servername or address
+- COLLECTIVE_STATS_STATSD_SERVER_PORT: port number (default value: 8125)
+- COLLECTIVE_STATS_STATSD_PREFIX: prefix under the values will be stored (default value: collective.stats)
 
 For example::
 
     environment-vars =
-        COLECTIVE_STATS_STATSD_SERVER my.statsd.server.com
-        COLECTIVE_STATS_STATSD_SERVER_PORT 8125
-        COLECTIVE_STATS_STATSD_PREFIX myproject
+        COLLECTIVE_STATS_STATSD_SERVER my.statsd.server.com
+        COLLECTIVE_STATS_STATSD_SERVER_PORT 8125
+        COLLECTIVE_STATS_STATSD_PREFIX myproject
 
 
 

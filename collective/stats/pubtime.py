@@ -106,10 +106,10 @@ def pubSucessHandler(ev):
         'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d' % info[:8]
     )
 
-    if os.getenv('COLECTIVE_STATS_STATSD_SERVER'):
-        server = os.getenv('COLECTIVE_STATS_STATSD_SERVER')
-        port = os.getenv('COLECTIVE_STATS_STATSD_SERVER_PORT', 8125)
-        prefix = os.getenv('COLECTIVE_STATS_STATSD_PREFIX', 'collective.stats')
+    if os.getenv('COLLECTIVE_STATS_STATSD_SERVER'):
+        server = os.getenv('COLLECTIVE_STATS_STATSD_SERVER')
+        port = os.getenv('COLLECTIVE_STATS_STATSD_SERVER_PORT', 8125)
+        prefix = os.getenv('COLLECTIVE_STATS_STATSD_PREFIX', 'collective.stats')
         resource = environ['PATH_INFO'].replace('/', '.')
         method = environ['REQUEST_METHOD']
         logkey = '{prefix}.{key}.{method}'.format(
