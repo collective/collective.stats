@@ -47,7 +47,7 @@ If you want to use this product in a production environment, and you don't want 
         COLLECTIVE_STATS_DISABLE_LOG 1
 
 You still get the ``X-Stats`` response header.
-        
+
 Outside Plone
 -------------
 
@@ -87,7 +87,7 @@ Check the current directory and you should see a ``stats.csv`` file::
 
 Take a peek at the top of that file to see the column headers::
 
-    $ head stats.csv 
+    $ head stats.csv
     url,time,t traverse,t commit,t transchain,setstate,total,total cached,modified,rss before,rss after
     GET:/favicon.ico,0.0021,0.0014,0.0018,0.0000,0000,0000,0000,116708,116744
     GET:/manage_main,0.1783,0.0021,0.1779,0.0000,0000,0000,0000,116756,116948
@@ -98,6 +98,26 @@ Take a peek at the top of that file to see the column headers::
     GET:/misc_/OFSP/Folder_icon.gif,0.0018,0.0012,0.0016,0.0000,0000,0000,0000,117032,117032
     GET:/p_/ControlPanel_icon,0.0017,0.0009,0.0015,0.0000,0000,0000,0000,117036,117036
     GET:/misc_/OFSP/UserFolder_icon.gif,0.0017,0.0012,0.0015,0.0000,0000,0000,0000,117036,117036
+
+
+Log to a Statsd server
+----------------------
+
+If you want to log the data to a statsd_ server (for example to get graphs with
+graphite_ or grafana_), provide the following environtment vars:
+
+- COLECTIVE_STATS_STATSD_SERVER: servername or address
+- COLECTIVE_STATS_STATSD_SERVER_PORT: port number (default value: 8125)
+- COLECTIVE_STATS_STATSD_PREFIX: prefix under the values will be stored (default value: collective.stats)
+
+For example::
+
+    environment-vars =
+        COLECTIVE_STATS_STATSD_SERVER my.statsd.server.com
+        COLECTIVE_STATS_STATSD_SERVER_PORT 8125
+        COLECTIVE_STATS_STATSD_PREFIX myproject
+
+
 
 
 Documentation
@@ -172,3 +192,7 @@ Enjoy!
 
 
 .. [1] ``collective.stats`` has been donated to the Plone collective by Enfold Systems under a BSD-like license (ZPL 2.1).
+
+.. _statsd: https://github.com/etsy/statsd
+.. _graphite: http://graphite.wikidot.com/
+.. _grafana: http://grafana.org/
