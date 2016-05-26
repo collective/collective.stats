@@ -7,6 +7,7 @@ from zope import component
 import ZPublisher.interfaces
 import logging
 import os
+import statsd
 
 logger = logging.getLogger('collective.stats')
 
@@ -66,9 +67,12 @@ def pubSucessHandler(ev):
     for td in stats['zodb-loads']:
         loads = loads + td
 
-    def printTD(td):
+    def printTD(td, string=True):
         s = td.seconds + td.microseconds / 1000000.0
-        return '%2.4f' % s
+        if string:
+            return '%2.4f' % s
+        else:
+            return s
 
     rss1 = stats['memory'][0] / 1024
     rss2 = process.memory_info()[0] / 1024
@@ -101,5 +105,56 @@ def pubSucessHandler(ev):
     ev.request.response.setHeader(
         'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d' % info[:8]
     )
+
+    if os.getenv('COLECTIVE_STATS_STATSD_SERVER'):
+        server = os.getenv('COLECTIVE_STATS_STATSD_SERVER')
+        port = os.getenv('COLECTIVE_STATS_STATSD_SERVER_PORT', 8125)
+        prefix = os.getenv('COLECTIVE_STATS_STATSD_PREFIX', 'collective.stats')
+        resource = environ['PATH_INFO'].replace('/', '.')
+        method = environ['REQUEST_METHOD']
+        logkey = '{prefix}.{key}.{method}'.format(
+            prefix=prefix, method=method, resource=resource, key='{key}',
+        )
+        client = statsd.StatsClient(server, port)
+        client.timing(
+            logkey.format(key='time_end'),
+            printTD(stats['time-end'], string=False)
+        )
+        client.timing(
+            logkey.format(key='time_aftertraverse'),
+            printTD(stats['time-after-traverse'], string=False)
+        )
+        client.timing(
+            logkey.format(key='time_beforecommit'),
+            printTD(stats['time-before-commit'], string=False)
+        )
+        client.timing(
+            logkey.format(key='time_transchain'),
+            printTD(stats['transchain'], string=False))
+        client.timing(
+            logkey.format(key='time_loads'),
+            printTD(loads, string=False)
+        )
+        client.gauge(
+            logkey.format(key='objects_total'),
+            total)
+        client.gauge(
+            logkey.format(key='objects_total_cached'),
+            total_cached)
+        client.gauge(
+            logkey.format(key='objects_modified'),
+            stats['modified'])
+        client.timer(
+            logkey.format(key='objects_time_t_total'),
+            printTD(t_total, string=False))
+        client.timer(
+            logkey.format(key='objects_time_t_cached'),
+            printTD(t_cached, string=False))
+        client.timer(
+            logkey.format(key='objects_time_t_uncached'),
+            printTD(t_uncached, string=False))
+        client.gauge(
+            logkey.format(key='memory_rss'),
+            rss2 - rss1)
 
     del STATS.stats

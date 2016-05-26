@@ -41,6 +41,7 @@ setup(
         'ZODB3',
         'Zope2',
         'psutil',
+        'statsd',
     ],
     extras_require=dict(
         oldzope=['ZPublisherEventsBackport']),
