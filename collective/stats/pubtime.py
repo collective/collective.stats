@@ -102,9 +102,10 @@ def pubSucessHandler(ev):
             '| RSS: %s - %s' % info
         )
 
-    ev.request.response.setHeader(
-        'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d' % info[:8]
-    )
+    if os.getenv("COLLECTIVE_STATS_DISABLE_RESPONSE_HEADER") != "1":
+        ev.request.response.setHeader(
+            'x-stats', '%s %s %s %s %s %0.4d %0.4d %0.4d' % info[:8]
+        )
 
     if os.getenv('COLLECTIVE_STATS_STATSD_SERVER'):
         server = os.getenv('COLLECTIVE_STATS_STATSD_SERVER')

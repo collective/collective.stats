@@ -46,7 +46,12 @@ If you want to use this product in a production environment, and you don't want 
     environment-vars =
         COLLECTIVE_STATS_DISABLE_LOG 1
 
-You still get the ``X-Stats`` response header.
+You still get the ``X-Stats`` response header. To disable the ``X-Stats`` header, add an environment var, as follows::
+
+    environment-vars =
+        ...
+        COLLECTIVE_STATS_DISABLE_RESPONSE_HEADER 1
+
 
 Outside Plone
 -------------
