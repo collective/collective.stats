@@ -11,7 +11,7 @@ except ImportError:
 
 
 def initialize(context):
-    from zodbstats import patchObjectReader
+    from collective.stats.zodbstats import patchObjectReader
     patchObjectReader()
 
     try:
