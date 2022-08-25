@@ -5,8 +5,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add support for Python 3
+  [mamico]
 
 1.0.2 (2015-12-01)
 ------------------
