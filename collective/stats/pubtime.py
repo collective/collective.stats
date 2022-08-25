@@ -95,7 +95,7 @@ def pubSucessHandler(ev):
         logger.info(
             '| %s %s %s %s %s %0.4d %0.4d %0.4d '
             '| %s:%s | t: %s, t_c: %s, t_nc: %s '
-            '| RSS: %s - %s', *info
+            '| RSS: %s - %s' % info
         )
 
     ev.request.response.setHeader(
