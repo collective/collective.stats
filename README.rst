@@ -168,7 +168,7 @@ it was due to unoptimized plone.app.theming / diazo rules file.
 
 Enjoy!
 
-.. _`Enfold Systems'`: http://enfoldsystems.com
+.. _`Enfold Systems'`: https://enfoldsystems.com
 
 
 .. [1] ``collective.stats`` has been donated to the Plone collective by Enfold Systems under a BSD-like license (ZPL 2.1).
