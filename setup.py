@@ -41,7 +41,7 @@ setup(
     author_email='contact@enfoldsystems.com',
     maintainer='Alex Clark',
     maintainer_email='aclark@aclark.net',
-    url='http://github.com/collective/collective.stats',
+    url='https://github.com/collective/collective.stats',
     license='ZPL',
     keywords='collective stats plone zope',
     packages=find_packages(exclude=['ez_setup']),
