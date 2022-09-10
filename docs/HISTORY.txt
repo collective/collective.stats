@@ -25,7 +25,7 @@ Changelog
 ------------------
 
 - Fixes ``AttributeError`` with ``thread._local``, adapt to new ``psutil`` API.
-  Ref: http://stackoverflow.com/questions/20640679
+  Ref: https://stackoverflow.com/questions/20640679
   [thet]
 
 
