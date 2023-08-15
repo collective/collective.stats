@@ -5,9 +5,9 @@ import sys
 def main():
     logfile = sys.argv[1]
     try:
-        outfile = open(sys.argv[2], 'wb')
+        outfile = open(sys.argv[2], 'w')
     except:
-        outfile = open('stats.csv', 'wb')
+        outfile = open('stats.csv', 'w')
 
     writer = csv.writer(outfile)
     writer.writerow((
@@ -15,7 +15,7 @@ def main():
         'total', 'total cached', 'modified', 'rss before', 'rss after'
     ))
 
-    for line in open(logfile, 'rb'):
+    for line in open(logfile, 'r'):
         if 'collective.stats' not in line:
             continue
 
@@ -30,7 +30,7 @@ def main():
         rss1, rss2 = [i.strip() for i in i4.split('RSS:')[-1].split('-')]
         url = i2.strip()
 
-        print '%s | %s' % (i1, i2)
+        print('%s | %s' % (i1, i2))
         writer.writerow(
             (url, tital, after_traverse, before_commit, transchain, loads,
              loads_total, loads_cached, modified, rss1, rss2))
